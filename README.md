@@ -48,6 +48,7 @@ Insights drawn from the above plot with respect to the Stroke Data
 <img width="387" alt="image" src="https://github.com/harshithaanuganti/stroke-prediction/assets/74675390/c1e66231-5578-4a2a-a16c-2f9ad41beec5">
  
 Numerical Attributes Vs Target Attribute
+
 Insights drawn from the above plot with respect to the Stroke Data
 1.	Age is a big factor in stroke patients - the older you get the more at risk you are.
 2.	People with prediabetic (glucose level between 140-199) and diabetes (glucose level >200) are more prone to having a stroke.
@@ -180,11 +181,3 @@ The end-user needs to be informed about this peculiarity. They should be informe
 The LIME analysis that we have done on our logistic regression model can assist a doctor in diagnosing if a patient is susceptible to a stroke or not. 
 
 This was a very challenging dataset and we were able to learn and apply a lot of data mining techniques. We think that we can arrive at better results if we can get hold of a lot more data both in terms of samples and attributes. Sensitive data such as common medical instrument measurements and metrics such as heart rate variability, breathing rate, SpO2 variability can help us explore more about what causes stroke and how we can tackle this widespread lifestyle disease. 
-
-
-
-
-
-
-![image](https://github.com/harshithaanuganti/stroke-prediction/assets/74675390/6700303b-c293-4716-8268-a39e1fb2e40b)
-
