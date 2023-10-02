@@ -25,13 +25,15 @@ The last attribute, stroke is the target variable which takes values 1, for stro
 ## Exploratory Data Analysis
 Below is the visualization of the target attribute of the dataset i.e., stroke.
 
+<img width="240" alt="image" src="https://github.com/harshithaanuganti/stroke-prediction/assets/74675390/bad3ed7f-c88f-4765-be8a-6c1f5fa0f65e">
  
 Distribution Plot of Target Attribute
 
 From the distribution, we can observe that there is a class imbalance problem with the target attribute. 
 To gain more insights into the data, we have visualized the distributions of the attributes with respect to the target (i.e., stroke) attribute.
- 
- 
+ <img width="284" alt="image" src="https://github.com/harshithaanuganti/stroke-prediction/assets/74675390/1073ca4a-65dc-44a9-8502-4114a9d7c68e">
+ <img width="273" alt="image" src="https://github.com/harshithaanuganti/stroke-prediction/assets/74675390/ab19aff1-6cf3-478c-932c-89b3a7bce5db">
+
 Categorical Attributes Vs Target Attribute
 
 Insights drawn from the above plot with respect to the Stroke Data
@@ -41,6 +43,7 @@ Insights drawn from the above plot with respect to the Stroke Data
 4.	Self Employed people have a higher chance compared to Private and Govt Jobs.
 5.	Rural and Urban doesn't show much difference and approximately have a 5% chance to get a stroke.
 6.	For some reason, people who once used to smoke have a higher chance compared to people who are still smoking.
+<img width="387" alt="image" src="https://github.com/harshithaanuganti/stroke-prediction/assets/74675390/c1e66231-5578-4a2a-a16c-2f9ad41beec5">
  
 Numerical Attributes Vs Target Attribute
 Insights drawn from the above plot with respect to the Stroke Data
@@ -48,8 +51,10 @@ Insights drawn from the above plot with respect to the Stroke Data
 2.	People with prediabetic (glucose level between 140-199) and diabetes (glucose level >200) are more prone to having a stroke.
 3.	Overweight people (with high BMI) are slightly more likely to have a stroke.
 In the final step we checked the correlation of the different features with the target variable and with each other as this would not only give a good estimate of the strength of the features as predictors of stroke but also reveal any collinearity among the features.
+<img width="226" alt="image" src="https://github.com/harshithaanuganti/stroke-prediction/assets/74675390/346ac3b4-aab5-4894-9608-ceb58782bc8b">
  
 Correlation Matrix
+
 From the matrix, there are no features with a correlation of more than 0.25 with the target stroke attribute and this shows that the features are poor predictors. However, the features with the highest correlation are age, hypertension, heart_disease and avg_glucose_level.
 ## Data Preprocessing
 We have pre-processed the dataset in four steps:
@@ -59,8 +64,11 @@ We have pre-processed the dataset in four steps:
 4. 	Feature scaling
 ### Data Imputation
 We have observed that there are missing values in the ‘bmi’ attribute.
+
+<img width="326" alt="image" src="https://github.com/harshithaanuganti/stroke-prediction/assets/74675390/9f209d6a-c446-4d9b-bfe5-a159c280d9be">
  
 Target Vs bmi
+
 From the above plot, we can observe that the missing values of bmi (left most column) contribute to a major part of the ‘stroke=yes’ class. Therefore, we couldn’t delete the records containing missing values. We handled these missing values in three ways:
 1.	Using Median: In this method, we had replaced the missing values with the median of the bmi attribute. This is a statistical approach of handling the missing values.
 2.	Using a Decision Tree to predict BMI for missing rows: We have used a simple decision tree model which based on the age and gender of all other samples gave us a fair prediction for the missing values.
@@ -78,7 +86,10 @@ There was one sample that had the gender attribute set to “Other”. We remove
 We have observed that there is an imbalance in the target attribute with only 5% contributing to ‘stroke=yes’. It is not advised to train a classifier on an imbalanced data set as it may be biased towards one class thus achieving high accuracy but have poor sensitivity or specificity. 
 We have used a Synthetic Minority Oversampling Technique (SMOTE) to address this problem. SMOTE first selects a minority class instance at random and finds its k nearest minority class neighbors. The synthetic instance is then created by choosing one of the k nearest neighbors at random and connecting both to form a line segment in the feature space. The synthetic instances are generated as a convex combination of the two chosen instances.
 Below are the visualizations of the target attribute before and after Oversampling.
-  
+
+  <img width="332" alt="image" src="https://github.com/harshithaanuganti/stroke-prediction/assets/74675390/948a4ce3-73c3-4f2b-93a6-3bdc0d005a46">
+  <img width="342" alt="image" src="https://github.com/harshithaanuganti/stroke-prediction/assets/74675390/a6b27c23-f207-4e1f-b9df-6f393e67cfa8">
+
 ### Feature scaling
 We have standardized the attributes in our dataset using a Standard Scaler().Given the distribution of the data, each value in the dataset will have the mean value subtracted, and then divided by the standard deviation of the whole dataset (or feature in the multivariate case). This is part of the pipeline that we build while training models.
 
@@ -102,12 +113,18 @@ The next model we tried was logistic regression. We ran this model with the defa
 The next model we tried was support-vector machines. We ran this model with the default parameters and got mediocre results on the training data. We got mediocre results even when we ran it on the test data. By using the hyperparameter tuning method mentioned above, we got the following parameters - {'C': 1000, 'gamma': 0.01, 'kernel': 'rbf'}. When we used SVM with the following parameters on the test set we didn’t see any improvement.
 An observation that we think is interesting is that random forest performed the best and logistic regression the worst in terms of f1-score on training data. When we used test data, random forest performed the worst whereas logistic regression performed the best. This just goes to show that the generalization capability of logistic regression for this dataset is better than the other classifiers.
 The different measures for the models on the test set are depicted in the image below.
- 
+<img width="445" alt="image" src="https://github.com/harshithaanuganti/stroke-prediction/assets/74675390/2b99b58c-35ed-49a5-a0ac-96b72e24dabe">
+
 Since logistic regression has the best f1 score among the three, we will expand upon it and show its confusion matrix as well. In the confusion matrix below one obvious and concerning fact is the presence of a high number of false positives. But, we can see that the false positive rate is only around 0.2.
- 
+
+ <img width="432" alt="image" src="https://github.com/harshithaanuganti/stroke-prediction/assets/74675390/55a1c045-c8c8-4f8d-8ba1-d32b8ac4b25a">
+
 
 
 In order to compare the different models with each other, we use the ROC area under curve as well.
+
+<img width="290" alt="image" src="https://github.com/harshithaanuganti/stroke-prediction/assets/74675390/4182e982-29c7-40a5-86bf-4376babcac15">
+
  
 We can notice that logistic regression performs better than the other models at all places and has a better area under the curve. This helped us settle on logistic regression as our final model.
 
@@ -117,6 +134,13 @@ We can notice that logistic regression performs better than the other models at 
 ### Random Forest
 SHAP values (SHapley Additive exPlanations) break down a prediction to show the impact of each feature. It interprets the impact of having a certain value for a given feature in comparison to the prediction we'd make if that feature took some baseline value (e.g. zero).
 
+<img width="224" alt="image" src="https://github.com/harshithaanuganti/stroke-prediction/assets/74675390/6a8d6552-64b7-44b7-b088-cf90082bfe7d">
+
+<img width="224" alt="image" src="https://github.com/harshithaanuganti/stroke-prediction/assets/74675390/1cbad2f8-7206-4c63-9648-e8d5a58d3390">
+
+<img width="217" alt="image" src="https://github.com/harshithaanuganti/stroke-prediction/assets/74675390/421de7e6-748e-4dad-93d5-f8214c4e9ea8">
+
+<img width="197" alt="image" src="https://github.com/harshithaanuganti/stroke-prediction/assets/74675390/4e8df161-2a88-4ae0-afff-73463604f9bc">
 
  	 
  	 
@@ -125,12 +149,18 @@ SHAP values (SHapley Additive exPlanations) break down a prediction to show the 
 The plot above shows the effect of each data point on our predictions. For example, for age, the top-left point reduced the prediction by 0.6. The color shows whether that feature was high or low for that row of the dataset Horizontal location shows whether the effect of that value caused a higher or lower prediction. We can also see how our Random Forest Model is heavily skewed in favour of predicting no-strokes. We can also focus on how the impact of each variable changes, as the variable itself changes. For instance, Age. When this variable increases, the SHAP value also increases - pushing the patient closer to  our 1 condition (stroke). This is also shown with color -  pink/red representing those who suffered a stroke. Here we see a clear cutoff point for when strokes become far more common - after a BMI of around 30 or so.
 ### Logistic Regression Interpretation
 The graphs shown below are generated using ‘lime interpreter’ for logistic regression.
- 
+
+ <img width="468" alt="image" src="https://github.com/harshithaanuganti/stroke-prediction/assets/74675390/e1d48c44-152e-414d-b657-d65cfe6e5947">
+
 This example predicts a stroke probability of 0.72. Next, it tells us the key attributes which influenced its prediction. As we can see, age>60 is thought to influence the probability of stroke to a large extent. Gender being 1 (female) tends to decrease the stroke probability. 
- 
+
+ <img width="468" alt="image" src="https://github.com/harshithaanuganti/stroke-prediction/assets/74675390/34dcbd10-e41e-4515-9bc8-fbd717763332">
+
 This example predicts a stroke probability of 0.19. As we can see, 24<age<=45 is thought to influence the probability of not having a stroke to a large extent making the probability of having a stroke much smaller. Gender being 0 (male) tends to increase the stroke probability, etc. 
 Such interpretation is really useful for a practitioner to determine the reasons why a person who’s being screened for stroke gets a particular value for getting stroke. This helps build trust in the model for an individual.
- 
+
+ <img width="154" alt="image" src="https://github.com/harshithaanuganti/stroke-prediction/assets/74675390/432952b2-e563-4f53-8d07-8346555c0de2">
+
 The table shown above shows the importance of particular features by evaluating the model globally. It tells us that age and avg_glucose_level have a high impact on stroke.
 
 ## Conclusions
