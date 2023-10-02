@@ -31,6 +31,7 @@ Distribution Plot of Target Attribute
 
 From the distribution, we can observe that there is a class imbalance problem with the target attribute. 
 To gain more insights into the data, we have visualized the distributions of the attributes with respect to the target (i.e., stroke) attribute.
+ 
  <img width="284" alt="image" src="https://github.com/harshithaanuganti/stroke-prediction/assets/74675390/1073ca4a-65dc-44a9-8502-4114a9d7c68e">
  <img width="273" alt="image" src="https://github.com/harshithaanuganti/stroke-prediction/assets/74675390/ab19aff1-6cf3-478c-932c-89b3a7bce5db">
 
@@ -43,6 +44,7 @@ Insights drawn from the above plot with respect to the Stroke Data
 4.	Self Employed people have a higher chance compared to Private and Govt Jobs.
 5.	Rural and Urban doesn't show much difference and approximately have a 5% chance to get a stroke.
 6.	For some reason, people who once used to smoke have a higher chance compared to people who are still smoking.
+
 <img width="387" alt="image" src="https://github.com/harshithaanuganti/stroke-prediction/assets/74675390/c1e66231-5578-4a2a-a16c-2f9ad41beec5">
  
 Numerical Attributes Vs Target Attribute
@@ -51,6 +53,7 @@ Insights drawn from the above plot with respect to the Stroke Data
 2.	People with prediabetic (glucose level between 140-199) and diabetes (glucose level >200) are more prone to having a stroke.
 3.	Overweight people (with high BMI) are slightly more likely to have a stroke.
 In the final step we checked the correlation of the different features with the target variable and with each other as this would not only give a good estimate of the strength of the features as predictors of stroke but also reveal any collinearity among the features.
+
 <img width="226" alt="image" src="https://github.com/harshithaanuganti/stroke-prediction/assets/74675390/346ac3b4-aab5-4894-9608-ceb58782bc8b">
  
 Correlation Matrix
@@ -113,6 +116,7 @@ The next model we tried was logistic regression. We ran this model with the defa
 The next model we tried was support-vector machines. We ran this model with the default parameters and got mediocre results on the training data. We got mediocre results even when we ran it on the test data. By using the hyperparameter tuning method mentioned above, we got the following parameters - {'C': 1000, 'gamma': 0.01, 'kernel': 'rbf'}. When we used SVM with the following parameters on the test set we didn’t see any improvement.
 An observation that we think is interesting is that random forest performed the best and logistic regression the worst in terms of f1-score on training data. When we used test data, random forest performed the worst whereas logistic regression performed the best. This just goes to show that the generalization capability of logistic regression for this dataset is better than the other classifiers.
 The different measures for the models on the test set are depicted in the image below.
+
 <img width="445" alt="image" src="https://github.com/harshithaanuganti/stroke-prediction/assets/74675390/2b99b58c-35ed-49a5-a0ac-96b72e24dabe">
 
 Since logistic regression has the best f1 score among the three, we will expand upon it and show its confusion matrix as well. In the confusion matrix below one obvious and concerning fact is the presence of a high number of false positives. But, we can see that the false positive rate is only around 0.2.
